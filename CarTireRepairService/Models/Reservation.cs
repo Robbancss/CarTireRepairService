@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CarTireRepairService.Models
@@ -17,7 +18,7 @@ namespace CarTireRepairService.Models
         public DateTime ReservationTime { get; set; }
 
         [Required]
-        public ServiceTypes ProvidedService { get; set; }
+        public ICollection<CarServices> ProvidedService { get; set; }
 
         public virtual Client Client { get; set; }
 

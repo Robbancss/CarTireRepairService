@@ -17,7 +17,7 @@ namespace CarTireRepairService.Models
         public string Address { get; set; }
 
         [Required]
-        public ServiceTypes[] ProvidedServices { get; set; }
+        public string ProvidedServices { get; set; }
 
         public ICollection<Reservation> Reservations { get; set; }
     }
