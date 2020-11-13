@@ -2,18 +2,15 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CarTireRepairService.Controllers
 {
-    public class ClientController : Controller
+    public class ClientsController : Controller
     {
         private readonly UserManager<Client> _userManager;
         private readonly SignInManager<Client> _signInManager;
-        public ClientController(UserManager<Client> userManager, SignInManager<Client> signInManager)
+        public ClientsController(UserManager<Client> userManager, SignInManager<Client> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -100,5 +97,5 @@ namespace CarTireRepairService.Controllers
                 return RedirectToAction("", "");
             }
         }
-    }
+    } 
 }

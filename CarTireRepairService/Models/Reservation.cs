@@ -11,9 +11,6 @@ namespace CarTireRepairService.Models
         public Int32 ID { get; set; }
 
         [Required]
-        public Int32 WorkshopID { get; set; }
-
-        [Required]
         [DataType(DataType.Date)]
         public DateTime ReservationTime { get; set; }
 

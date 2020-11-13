@@ -16,5 +16,7 @@ namespace CarTireRepairService.Data
         public DbSet<Workshop> Workshops { get; set; }
 
         public DbSet<Client> Clients { get; set; }
+
+        public DbSet<CarServices> ProvidedServices { get; set; }
     }
 }
