@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarTireRepairService.Models
 {
@@ -15,9 +16,11 @@ namespace CarTireRepairService.Models
         public DateTime ReservationTime { get; set; }
 
         [Required]
-        public ICollection<CarServices> ProvidedService { get; set; }
+        public CarServices ProvidedService { get; set; }
 
-        public virtual Client Client { get; set; }
+        [ForeignKey("Client")]
+        [Required]
+        public String UserID { get; set; }
 
         public virtual Workshop Workshop { get; set; }
     }

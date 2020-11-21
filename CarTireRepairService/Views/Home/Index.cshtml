@@ -1,8 +1,62 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Client> SignInManager
+
+@model List<Reservation>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2>Your next appointments</h2>
 </div>
+
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+<table>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+    <tr>
+        <td>
+            @Model[i].Workshop.Name
+        </td>
+        <td>
+            ---
+        </td>
+        <td>
+            @Model[i].ReservationTime
+        </td>
+        <td>
+            ---
+        </td>
+        @if (Model[i].ProvidedService.AirConCharging)
+        {
+            <td>
+                @Html.DisplayNameFor(model => model[i].ProvidedService.AirConCharging)
+            </td>
+        }
+        @if (Model[i].ProvidedService.PunctureRepair)
+        {
+            <td>
+                @Html.DisplayNameFor(model => model[i].ProvidedService.PunctureRepair)
+            </td>
+        }
+        @if (Model[i].ProvidedService.SuspensionAdjustment)
+        {
+            <td>
+                @Html.DisplayNameFor(model => model[i].ProvidedService.SuspensionAdjustment)
+            </td>
+        }
+        @if (Model[i].ProvidedService.TireReplacement)
+        {
+            <td>
+                @Html.DisplayNameFor(model => model[i].ProvidedService.TireReplacement)
+            </td>
+        }
+    </tr>
+    }
+</table>
+}

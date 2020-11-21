@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CarTireRepairService.Models.Workshop>
+@using CarTireRepairService.Models;
 
 @{
     ViewData["Title"] = "Index";
@@ -14,7 +15,7 @@
     <div class="form-actions no-color">
         <p>
             Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" /> |
+            <input type="submit" value="Search"  class="btn btn-default" /> |
             <a asp-action="Index">Back to Full List</a>
         </p>
     </div>
@@ -54,16 +55,36 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProvidedServices.TireReplacement)
+                @if (item.ProvidedServices.TireReplacement)
+                {
+                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@ServiceTypes.TireReplacement">
+                        X
+                    </a>
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProvidedServices.AirConCharging)
+                @if (item.ProvidedServices.AirConCharging)
+                {
+                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@ServiceTypes.AirConCharging">
+                        X
+                    </a>
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProvidedServices.PunctureRepair)
+                @if (item.ProvidedServices.PunctureRepair)
+                {
+                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@ServiceTypes.PunctureRepair">
+                        X
+                    </a>
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProvidedServices.SuspensionAdjustment)
+                @if (item.ProvidedServices.SuspensionAdjustment)
+                {
+                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@ServiceTypes.SuspensionAdjustment">
+                        X
+                    </a>
+                }
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a>

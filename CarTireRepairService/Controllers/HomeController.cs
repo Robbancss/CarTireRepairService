@@ -6,20 +6,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CarTireRepairService.Models;
+using Microsoft.AspNetCore.Identity;
+using CarTireRepairService.Services;
 
 namespace CarTireRepairService.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UserManager<Client> _userManager;
         private readonly ILogger<HomeController> _logger;
+        private readonly CTRService _service;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserManager<Client> userManager, CTRService service)
         {
             _logger = logger;
+            _userManager = userManager;
+            _service = service;
         }
 
         public IActionResult Index()
         {
+            var userID = _userManager.GetUserId(User);
+            if (userID != null)
+            {
+                var userReservations = _service.GetReservationsByUserID(userID);
+                ViewBag.UserReservations = userReservations;
+                return View(userReservations);
+            }
             return View();
         }
 

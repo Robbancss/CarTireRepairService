@@ -50,7 +50,9 @@ namespace CarTireRepairService
             });
             
             services.AddTransient<CTRService>();
-            
+
+            services.AddSession();
+
             services.AddControllersWithViews();
         }
 
@@ -73,6 +75,8 @@ namespace CarTireRepairService
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -80,10 +84,7 @@ namespace CarTireRepairService
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            if (false)
-            {
-                DbInitializer.Initialize(serviceProvider);
-            }
+            DbInitializer.Initialize(serviceProvider);
         }
     }
 }

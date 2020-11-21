@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace CarTireRepairService.Models
@@ -17,15 +18,19 @@ namespace CarTireRepairService.Models
         [Required]
         public Int32 ID { get; set; }
 
+        [DisplayName("Tire replacement")]
         [Required]
         public bool TireReplacement { get; set; }
-        
+
+        [DisplayName("Air conditioner changing")]
         [Required]
         public bool AirConCharging { get; set; }
 
+        [DisplayName("Puncture repair")]
         [Required]
         public bool PunctureRepair { get; set; }
-        
+
+        [DisplayName("Suspension adjustment")]
         [Required]
         public bool SuspensionAdjustment { get; set; }
     }

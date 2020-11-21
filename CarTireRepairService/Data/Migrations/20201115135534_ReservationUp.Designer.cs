@@ -4,14 +4,16 @@ using CarTireRepairService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarTireRepairService.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201115135534_ReservationUp")]
+    partial class ReservationUp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,20 +132,21 @@ namespace CarTireRepairService.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ClientId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("ProvidedServiceID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ReservationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("WorkshopID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("ProvidedServiceID");
 
@@ -310,6 +313,10 @@ namespace CarTireRepairService.Data.Migrations
 
             modelBuilder.Entity("CarTireRepairService.Models.Reservation", b =>
                 {
+                    b.HasOne("CarTireRepairService.Models.Client", "Client")
+                        .WithMany("Reservations")
+                        .HasForeignKey("ClientId");
+
                     b.HasOne("CarTireRepairService.Models.CarServices", "ProvidedService")
                         .WithMany()
                         .HasForeignKey("ProvidedServiceID")

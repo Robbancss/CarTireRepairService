@@ -1,0 +1,59 @@
+﻿@model Reservation
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Confirm Reservation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <div class="form-group">
+                    <label class="control-label">Car repair shop name:</label>
+                    <p class="font-weight-bold">@ViewBag.ChosenShop</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ordered service:</label>
+                <p class="font-weight-bold">
+                    @if (Model.ProvidedService.TireReplacement)
+                    {
+                        @Html.DisplayNameFor(model => model.ProvidedService.TireReplacement)
+                    }
+                    else if (Model.ProvidedService.AirConCharging)
+                    {
+                        @Html.DisplayNameFor(model => model.ProvidedService.AirConCharging)
+                    }
+                    else if (Model.ProvidedService.PunctureRepair)
+                    {
+                        @Html.DisplayNameFor(model => model.ProvidedService.PunctureRepair)
+                    }
+                    else if (Model.ProvidedService.SuspensionAdjustment)
+                    {
+                        @Html.DisplayNameFor(model => model.ProvidedService.SuspensionAdjustment)
+                    }
+                </p>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Repair time and date:</label>
+                <p class="font-weight-bold">@ViewBag.ChosenDate</p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Workshops" asp-action="Index">Nvm.. Back to the workshops</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

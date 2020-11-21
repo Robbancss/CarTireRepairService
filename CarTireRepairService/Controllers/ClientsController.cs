@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CarTireRepairService.Controllers
@@ -57,6 +58,10 @@ namespace CarTireRepairService.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewBag.ReturnUrl = returnUrl;
+            if (!ValidLicense(model.LicenseNumber))
+            {
+                ModelState.AddModelError("", "Wrong License Number");
+            }
             if (ModelState.IsValid)
             {
                 var user = new Client { UserName = model.Email,
@@ -83,7 +88,7 @@ namespace CarTireRepairService.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Lists");
+            return RedirectToAction("Index", "Workshops");
         }
 
         private IActionResult RedirectToLocal(string returnUrl)
@@ -96,6 +101,21 @@ namespace CarTireRepairService.Controllers
             {
                 return RedirectToAction("", "");
             }
+        }
+
+        public bool ValidLicense(string license)
+        {
+            if (license.Length != 6)
+            {
+                return false;
+            }
+            Regex regexchar = new Regex(@"\D+");
+            Match matchchar = regexchar.Match(license.Substring(0, 3));
+
+            Regex regexdig = new Regex(@"\d+");
+            Match matchdig = regexdig.Match(license.Substring(3));
+
+            return matchchar.Success && matchdig.Success;
         }
     } 
 }

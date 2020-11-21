@@ -18,7 +18,5 @@ namespace CarTireRepairService.Models
         [MaxLength(6)]
         [MinLength(6)]
         public string LicenseNumber { get; set; }
-
-        public ICollection<Reservation> Reservations { get; set; }
     }
 }

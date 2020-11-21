@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CarTireRepairService.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CarTireRepairService.Data
@@ -10,6 +12,14 @@ namespace CarTireRepairService.Data
         public static void Initialize(IServiceProvider serviceProvider)
         {
             ApplicationDbContext context = serviceProvider.GetRequiredService<ApplicationDbContext>();
+
+            context.Database.Migrate();
+
+            if (context.Workshops.Any())
+            {
+                return;
+            }
+
             var carServiceTypes = new List<CarServices>
             {
                 new CarServices
