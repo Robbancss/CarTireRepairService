@@ -21,6 +21,7 @@ namespace CarTireRepairService.Models
         [ForeignKey("Client")]
         [Required]
         public String UserID { get; set; }
+        public Client Client { get; set; }
 
         public virtual Workshop Workshop { get; set; }
     }

@@ -164,6 +164,16 @@ namespace CarTireRepairService.Controllers
             reservation.UserID = _userManager.GetUserId(User);
             reservation.ProvidedService = st;
 
+            foreach (var res in shop.Reservations)
+            {
+                if (res.ReservationTime == reservation.ReservationTime &&
+                    res.Workshop.ID == reservation.Workshop.ID &&
+                    res.ProvidedService == reservation.ProvidedService)
+                {
+                    return RedirectToAction("index", "home");
+                }
+            }
+
             shop.Reservations.Add(reservation);
 
             if (_service.UpdateWorkshop(shop))
