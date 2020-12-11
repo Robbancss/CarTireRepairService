@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CarTireRepairService.Models.Workshop>
+﻿@model IEnumerable<Persistence.Models.Workshop>
 @using CarTireRepairService.Models;
 
 @{
@@ -57,7 +57,7 @@
             <td>
                 @if (item.ProvidedServices.TireReplacement)
                 {
-                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@ServiceTypes.TireReplacement">
+                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@Persistence.Models.ServiceTypes.TireReplacement">
                         X
                     </a>
                 }
@@ -65,7 +65,7 @@
             <td>
                 @if (item.ProvidedServices.AirConCharging)
                 {
-                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@ServiceTypes.AirConCharging">
+                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@Persistence.Models.ServiceTypes.AirConCharging">
                         X
                     </a>
                 }
@@ -73,7 +73,7 @@
             <td>
                 @if (item.ProvidedServices.PunctureRepair)
                 {
-                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@ServiceTypes.PunctureRepair">
+                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@Persistence.Models.ServiceTypes.PunctureRepair">
                         X
                     </a>
                 }
@@ -81,7 +81,7 @@
             <td>
                 @if (item.ProvidedServices.SuspensionAdjustment)
                 {
-                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@ServiceTypes.SuspensionAdjustment">
+                    <a asp-controller="Reservations" asp-action="Index" asp-route-id="@item.ID" asp-route-serviceType="@Persistence.Models.ServiceTypes.SuspensionAdjustment">
                         X
                     </a>
                 }

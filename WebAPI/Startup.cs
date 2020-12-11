@@ -1,17 +1,16 @@
-using System;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Http;
-using Persistence.Models;
+using System;
 using Persistence.Data;
+using Microsoft.EntityFrameworkCore;
+using Persistence.Models;
+using Microsoft.AspNetCore.Identity;
 using Persistence.Services;
 
-namespace CarTireRepairService
+namespace WebAPI
 {
     public class Startup
     {
@@ -39,17 +38,10 @@ namespace CarTireRepairService
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = new PathString("/Clients/Login");
-                options.AccessDeniedPath = new PathString("/Clients/Login");
-            });
-            
             services.AddTransient<CTRService>();
 
-            services.AddSession();
 
-            services.AddControllersWithViews();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,24 +51,14 @@ namespace CarTireRepairService
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-            app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
 
             DbInitializer.Initialize(serviceProvider);

@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<Client> SignInManager
+@inject SignInManager<Persistence.Models.Client> SignInManager
 
-@model List<Reservation>
+@model List<Persistence.Models.Reservation>
 
 @{
     ViewData["Title"] = "Home Page";

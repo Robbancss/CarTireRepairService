@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CarTireRepairService.Models;
 using Microsoft.AspNetCore.Identity;
-using CarTireRepairService.Services;
+using Persistence.Models;
+using Persistence.Services;
 
 namespace CarTireRepairService.Controllers
 {
@@ -29,7 +30,7 @@ namespace CarTireRepairService.Controllers
             var userID = _userManager.GetUserId(User);
             if (userID != null)
             {
-                var userReservations = _service.GetReservationsByUserID(userID);
+                var userReservations = _service.GetReservationsByUserID(Int32.Parse(userID));
                 ViewBag.UserReservations = userReservations;
                 return View(userReservations);
             }

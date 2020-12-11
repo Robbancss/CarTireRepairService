@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using CarTireRepairService.Models;
-using CarTireRepairService.Services;
 using X.PagedList;
 using Microsoft.AspNetCore.Authorization;
 using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
+using Persistence.Models;
+using Persistence.Services;
 
 namespace CarTireRepairService.Controllers
 {
@@ -80,7 +81,7 @@ namespace CarTireRepairService.Controllers
 
                 _inProgressReservation = new Reservation();
                 _inProgressReservation.ProvidedService = new CarServices();
-                _inProgressReservation.UserID = _userManager.GetUserId(User);
+                _inProgressReservation.UserID = Int32.Parse(_userManager.GetUserId(User));
                 _inProgressReservation.ReservationTime = chosenDate;
                 _inProgressReservation.Workshop = _service.GetWorkShopByID((int)ID);
                 switch (serviceType)
@@ -161,7 +162,7 @@ namespace CarTireRepairService.Controllers
 
             Reservation reservation = new Reservation();
             reservation.ReservationTime = time;
-            reservation.UserID = _userManager.GetUserId(User);
+            reservation.UserID = Int32.Parse(_userManager.GetUserId(User));
             reservation.ProvidedService = st;
 
             foreach (var res in shop.Reservations)

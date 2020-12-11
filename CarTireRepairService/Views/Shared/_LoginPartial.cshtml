@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<Client> SignInManager
-@inject UserManager<Client> UserManager
+@inject SignInManager<Persistence.Models.Client> SignInManager
+@inject UserManager<Persistence.Models.Client> UserManager
 
 @{
     var user = await UserManager.GetUserAsync(User);

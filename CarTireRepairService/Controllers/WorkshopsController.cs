@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CarTireRepairService.Services;
 using Microsoft.AspNetCore.Authorization;
 using System;
+using Persistence.Services;
 
 namespace CarTireRepairService.Controllers
 {
