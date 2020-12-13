@@ -82,16 +82,39 @@ namespace Persistence.Services
             return true;
         }
 
+        public bool CreateWorkshop(Workshop workshop)
+        {
+            try
+            {
+                _context.Add(workshop);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return false;
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         #endregion
 
         #region Reservations
 
         public List<Reservation> GetReservationsByWorkshopID(Int32 workshopID)
         {
-            return _context.Reservations
+            var asd = _context.Reservations
                 .Where(r => r.Workshop.ID == workshopID)
                 .Include(r => r.Workshop)
+                .Include(r => r.ProvidedService)
+                .Include(r => r.Client)
                 .ToList<Reservation>();
+
+            return asd;
         }
 
         public List<Reservation> GetReservationsByUserID(Int32 UserID)
@@ -101,6 +124,25 @@ namespace Persistence.Services
                 .Include(r => r.Workshop)
                 .Include(r => r.ProvidedService)
                 .ToList<Reservation>();
+        }
+
+        public bool DeleteReservationByID(Int32 reservationID)
+        {
+            var list = _context.Reservations.Find(reservationID);
+            if (list == null)
+                return false;
+
+            try
+            {
+                _context.Remove(list);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         #endregion

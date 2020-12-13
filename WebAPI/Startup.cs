@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Persistence.Models;
 using Microsoft.AspNetCore.Identity;
 using Persistence.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace WebAPI
 {
@@ -54,6 +55,7 @@ namespace WebAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

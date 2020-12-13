@@ -42,15 +42,9 @@ namespace WebAPI.Controller
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            try
-            {
-                await _signInManager.SignOutAsync();
-                return Ok();
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+            await _signInManager.SignOutAsync();
+
+            return Ok();
         }
     }
 }

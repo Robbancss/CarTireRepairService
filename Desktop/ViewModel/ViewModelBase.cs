@@ -33,5 +33,7 @@ namespace Desktop.ViewModel
         {
             MessageApplication?.Invoke(this, new MessageEventArgs(message));
         }
+
+        public Func<string, string, bool> OkCancelDialog { get; set; }
     }
 }

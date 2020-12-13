@@ -12,7 +12,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csp
 		{974DF77D-18FB-429A-95A5-A283213632D5} = {974DF77D-18FB-429A-95A5-A283213632D5}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{64117F5A-DE65-47D2-A37E-BBE31B665A7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desktop", "Desktop\Desktop.csproj", "{64117F5A-DE65-47D2-A37E-BBE31B665A7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTRTest", "CTRTest\CTRTest.csproj", "{A3E77D83-8AA4-48F1-919B-729781A13449}"
+	ProjectSection(ProjectDependencies) = postProject
+		{974DF77D-18FB-429A-95A5-A283213632D5} = {974DF77D-18FB-429A-95A5-A283213632D5}
+		{6C3AAFC7-21EB-400B-891B-744B53626110} = {6C3AAFC7-21EB-400B-891B-744B53626110}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +42,10 @@ Global
 		{64117F5A-DE65-47D2-A37E-BBE31B665A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64117F5A-DE65-47D2-A37E-BBE31B665A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64117F5A-DE65-47D2-A37E-BBE31B665A7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3E77D83-8AA4-48F1-919B-729781A13449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3E77D83-8AA4-48F1-919B-729781A13449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3E77D83-8AA4-48F1-919B-729781A13449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3E77D83-8AA4-48F1-919B-729781A13449}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

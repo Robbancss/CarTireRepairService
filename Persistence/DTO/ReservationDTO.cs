@@ -20,16 +20,14 @@ namespace Persistence.DTO
         [Required]
         public CarServices ProvidedService { get; set; }
 
-        [ForeignKey("Client")]
-        [Required]
-        public Int32 UserID { get; set; }
+        public Client Client { get; set; }
 
         public static explicit operator ReservationDTO(Reservation reservation) => new ReservationDTO
         {
              ID = reservation.ID,
              ProvidedService = reservation.ProvidedService,
              ReservationTime = reservation.ReservationTime,
-             UserID = reservation.UserID
+             Client = reservation.Client
         };
 
         public static explicit operator Reservation(ReservationDTO reservationDTO) => new Reservation
@@ -37,7 +35,7 @@ namespace Persistence.DTO
             ID = reservationDTO.ID,
             ProvidedService = reservationDTO.ProvidedService,
             ReservationTime = reservationDTO.ReservationTime,
-            UserID = reservationDTO.UserID
+            Client = reservationDTO.Client
         };
     }
 }

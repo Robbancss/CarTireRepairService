@@ -5,8 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Dashboard" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="Options">
+                <MenuItem Header="Load workshops" Command="{Binding LoadCommand}"/>
+                <MenuItem Header="Add new workshop" Command="{Binding OpenBuildWorkshopWindowCommand}"/>
+                <MenuItem Header="Exit\Logout" Command="{Binding LogoutCommand}"/>
+            </MenuItem>
+        </Menu>
+
+        <DataGrid Name="workshopsGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Workshops}" SelectedItem="{Binding SelectedWorkshop}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}" />
+                <DataGridTextColumn Header="Tire Replacement" Binding="{Binding ProvidedServices.TireReplacement}" />
+                <DataGridTextColumn Header="Air ConCharging" Binding="{Binding ProvidedServices.AirConCharging}" />
+                <DataGridTextColumn Header="Puncture Repair" Binding="{Binding ProvidedServices.PunctureRepair}" />
+                <DataGridTextColumn Header="Suspension Adjustment" Binding="{Binding ProvidedServices.SuspensionAdjustment}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+            <Button Content="Open details" Margin="6,5,0,5" Command="{Binding WorkshopDetailsCommand}"/>
+            <ListBox Margin="6,5,0,5" ItemsSource="{Binding ServiceNames}" SelectedItem="{Binding SelectedServiceName}"/>
+        </StackPanel>
+
+        <DataGrid Name="reservationGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Reservations}" SelectedItem="{Binding SelectedReservation}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Time" Binding="{Binding ReservationTime}" />
+                <DataGridTextColumn Header="Client" Binding="{Binding Client.FullName}" />
+                <DataGridTextColumn Header="Car" Binding="{Binding Client.CarName}" />
+                <DataGridTextColumn Header="License number" Binding="{Binding Client.LicenseNumber}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+            <Button Content="Delete selected reservation" Margin="6,5,0,5" Command="{Binding DeleteReservationCommand}" />
+        </StackPanel>
 
     </Grid>
 </Window>
